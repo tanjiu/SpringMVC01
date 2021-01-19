@@ -11,6 +11,7 @@
     <modules>
         <module>springmvc-01-servlet</module>
         <module>srpingmvc-02-hellomvc</module>
+        <module>springmvc-03-annotation</module>
     </modules>
 <!--测试git-->
     <properties>
@@ -29,7 +30,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.1.3.RELEASE</version>
+            <version>5.0.9.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>

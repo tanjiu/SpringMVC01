@@ -20,7 +20,6 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-<!--添加注释，测试git-->
 <!--    BeanNameUrlHandlerMapping:bean-->
     <bean id="/hello" class="com.tanjiu.controller.HelloController"/>
 

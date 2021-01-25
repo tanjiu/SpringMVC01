@@ -39,10 +39,10 @@ public class UserController {
     //该注解返回一个json字符串，不会走视图解析器
     @ResponseBody
     public String json1(){
-//        创建一个对象
+       // 创建一个对象
         User user=new User("tanjiu",13,"男");
 
-//        return "test";//因为有@ResponseBody,会直接返回"test"字符串，而不是视图页面
+       // return "test";//因为有@ResponseBody,会直接返回"test"字符串，而不是视图页面
         return user.toString();
     }
 

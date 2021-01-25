@@ -25,6 +25,26 @@
     -->
     <mvc:annotation-driven/>
 
+
+
+    <!--解决json 乱码配置,前提要引入jackson依赖才可以用,否则报错-->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+                        <property name="failOnEmptyBeans" value="false"/>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+
     <!--    视图解析器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="InternalResourceViewResolver">
         <!--        前缀-->
@@ -33,6 +53,18 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-<!--    注意，springmvc如果通过xml来配置请求所对应的处理类的话，name要加/-->
-    <bean name="/t1" class="com.tanjiu.controller.ControllerTest1"/>
+    <!--    文件上传配置-->
+    <!--id不能随意写,只能用multipartResolver-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 限制文件上传总大小，不设置默认没有限制，单位为字节 200*1024*1024即200M -->
+        <property name="maxUploadSize" value="209715200" />
+        <!-- 设置每个上传文件的大小上限 -->
+        <property name="maxUploadSizePerFile" value="1048576"/>
+        <!-- 处理文件名中文乱码 -->
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
+        <property name="resolveLazily" value="true" />
+    </bean>
+
+
 </beans>
